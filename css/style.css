@@ -1,0 +1,23 @@
+body {
+  display: block;
+  margin: 16px;
+  background-color: rgb(135, 250, 185);
+}
+
+h1 {
+  font-size: 3vw;
+  font-weight: bold;
+  -webkit-margin-before: 1%;
+  -webkit-margin-after: 1%;
+  -webkit-margin-start: 1%;
+  -webkit-margin-end: 1%;
+}
+
+p{
+  font-size: 1.25vw;
+  -webkit-margin-before: 1%;
+  -webkit-margin-after: 1%;
+  -webkit-margin-start: 1%;
+  -webkit-margin-end: 1%;
+}
+
