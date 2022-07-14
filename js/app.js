@@ -1,5 +1,6 @@
 'usestrict';
 
+// Life Experience Guessing Game
 let userName = prompt('Hello, stranger. These popups are here to demo some basic javascript for Code Fellows. Can I ask your name?');
 
 if (userName !== null){ // If user clicks 'Cancel' skip all popups.
@@ -38,6 +39,93 @@ if (userName !== null){ // If user clicks 'Cancel' skip all popups.
     }else{
       alert(invalidAnswerMsg);
     }
-  } // End for loop;
-  alert(`Wow, ${userName}, you got ${gameScore} right.`);
-}
+  } // End for loop handling the life experience game.
+  alert(`Wow, ${userName}, you got ${gameScore} right so far.`);
+
+  // Lucky Number Guessing Game
+  let totalGuessCount = 4;
+  let finalGuessIndex = totalGuessCount -1;
+  let luckyMin = 1;
+  let luckyMax = 20;
+  let luckyNumber = (Math.floor(Math.random() * (luckyMax - luckyMin + 1) + luckyMin)); // Random 1-20 inclusive.
+  let luckyPromptMsg0 = 'Let\'s play another game. ';
+  let luckyPromptMsg1 = 'Guess the lucky number between 1-20.\nNumber of guesses: ';
+  let parsedInput = null;
+  validGameInput = null;
+  for (let guessCount = 0; guessCount < totalGuessCount; guessCount++){
+    if (guessCount === 0){
+      rawGameInput = prompt(luckyPromptMsg0 + luckyPromptMsg1 + totalGuessCount);
+    }else{
+      rawGameInput = prompt(luckyPromptMsg1 + (totalGuessCount - guessCount));
+    }
+    parsedInput = parseInt(rawGameInput);
+    if (isNaN(parsedInput) || parsedInput < 1 || parsedInput > 20){
+      alert('Bad guess, buddy.');
+      continue;
+    }else{
+      validGameInput = parsedInput;
+      if(validGameInput === luckyNumber){
+        alert('You got it! The lucky number: ' + luckyNumber);
+        ++gameScore;
+        break;
+      } else if(guessCount === finalGuessIndex){
+        alert('Too bad - that was the last guess. The lucky number: ' + luckyNumber);
+        break;
+      } else if (validGameInput > luckyNumber){
+        alert('Too big!');
+      } else{
+        alert('Too small!');
+      }
+    }
+  } // End for loop handling the lucky number guess counter.
+
+  // Favorite Things Guessing Game
+  let fruitPromptMsg0 = 'Let\'s play one last game. Your score is now: ';
+  let fruitPromptMsg1 = '\nGuess my 5 favorite tropical fruit. 1 point per right guess.\nNumber of guesses: ';
+  let fruitNames = ['papaya', 'starfruit', 'rambutan', 'lychee', 'coconut'];
+  let guessedFruitNames = [];
+  let totalFruit = fruitNames.length;
+  guessedFruitNames.length = totalFruit;
+  let fruitGameScore = 0;
+  totalGuessCount = 7;
+  finalGuessIndex = totalGuessCount -1;
+  validGameInput = null;
+  for (let usedGuessCount = 0; usedGuessCount < totalGuessCount; usedGuessCount++){
+    if (usedGuessCount === 0){
+      rawGameInput = prompt(fruitPromptMsg0 + gameScore + fruitPromptMsg1 + totalGuessCount);
+    }else{
+      rawGameInput = prompt(fruitPromptMsg1 + (totalGuessCount - usedGuessCount));
+    }
+    if (rawGameInput ===''){
+      alert('Nothing is not my favorite.');
+      continue;
+    }else if (rawGameInput === null) {
+      alert('Quitting game.');
+      break;
+    } else {
+      validGameInput = rawGameInput.toLowerCase();
+      for (let i = 0; i < totalFruit; i++){
+        if (validGameInput === fruitNames[i]){
+          if (validGameInput !== guessedFruitNames[i]){
+            ++gameScore;
+            ++fruitGameScore;
+            alert(`Yay, "${fruitNames[i]}" is correct.`);
+            guessedFruitNames[i] = fruitNames[i];
+            break;
+          } else {
+            alert(`Yes, but you already guessed ${guessedFruitNames[i]}.`);
+            continue;
+          }
+        } else if (i === totalFruit - 1){ // If last fruit index is checked
+          alert(`Sorry, "${rawGameInput}" is not my favorite tropical fruit.`);
+        }
+      }
+      if(usedGuessCount === finalGuessIndex){
+        alert(`That was the last guess. My favorite tropical fruits: 
+        ${fruitNames[0]}, ${fruitNames[1]}, ${fruitNames[2]}, ${fruitNames[3]}, ${fruitNames[4]}.
+        You guessed ${fruitGameScore} of ${totalFruit} fruit.
+        All Games Final Score: ${gameScore}`);
+      }
+    }
+  } // End fruit guess-counter for loop
+} // End initial Cancel option, to load page immediately.
