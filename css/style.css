@@ -43,7 +43,7 @@ p{
 
 .columns {
   display: grid;
-  grid-template-columns: 30% 30% 34%;	
+  grid-template-columns: 32% 30% 34%;	
   margin: 1.6% auto 2%;
   padding-left: 9%;
   text-align: center;
