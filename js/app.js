@@ -23,8 +23,6 @@ if (userName !== null) { // If user clicks 'Cancel' skip all popups.
   luckyNumberGuessingGame();
   favoriteThingsGame();
 
-  alert(`Wow, ${userName}, you got ${gameScore} right so far.`);
-
 } // End initial Cancel option, to load page immediately.
 
 function lifeExperienceGame(gameQuestions,gameAnswers) {
@@ -36,7 +34,7 @@ function lifeExperienceGame(gameQuestions,gameAnswers) {
   for (let i = 0; i < 5; i++) {
     rawGameInput = prompt(gameQuestions[i]).toLowerCase();
     if (rawGameInput === 'y' || rawGameInput === 'n' ||
-      rawGameInput === 'yes' || rawGameInput === 'no') {
+    rawGameInput === 'yes' || rawGameInput === 'no') {
       validGameInput = rawGameInput.charAt(0);
       if (validGameInput) {
         if (validGameInput === gameAnswers[i]) {
@@ -50,6 +48,7 @@ function lifeExperienceGame(gameQuestions,gameAnswers) {
       alert(invalidAnswerMsg);
     }
   } // End for loop handling the life experience game.
+  alert(`Wow, ${userName}, you got ${gameScore} right so far.`);
 }
 
 function luckyNumberGuessingGame() {
